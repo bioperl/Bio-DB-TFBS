@@ -2,7 +2,7 @@
 #
 # BioPerl module for Bio::DB::TFBS
 #
-# Please direct questions and support issues to <bioperl-l@bioperl.org> 
+# Please direct questions and support issues to <bioperl-l@bioperl.org>
 #
 # Cared for by Sendu Bala <bix@sendu.me.uk>
 #
@@ -56,15 +56,15 @@ the Bioperl mailing list.  Your participation is much appreciated.
   bioperl-l@bioperl.org                  - General discussion
   http://bioperl.org/wiki/Mailing_lists  - About the mailing lists
 
-=head2 Support 
+=head2 Support
 
 Please direct usage questions or support issues to the mailing list:
 
 I<bioperl-l@bioperl.org>
 
-rather than to the module maintainer directly. Many experienced and 
-reponsive experts will be able look at the problem and quickly 
-address it. Please include a thorough description of the problem 
+rather than to the module maintainer directly. Many experienced and
+reponsive experts will be able look at the problem and quickly
+address it. Please include a thorough description of the problem
 with code and data examples if at all possible.
 
 =head2 Reporting Bugs
@@ -93,6 +93,7 @@ Internal methods are usually preceded with a _
 # Let the code begin...
 
 package Bio::DB::TFBS;
+
 use strict;
 
 use Bio::Root::Root;
@@ -113,19 +114,19 @@ our $DefaultSource = 'transfac';
 
 sub new {
     my ($class, @args) = @_;
-  
+
     if ($class =~ /Bio::DB::TFBS::(\S+)/) {
         my ($self) = $class->SUPER::new(@args);
         $self->_initialize(@args);
         return $self;
     }
-    else { 
+    else {
         my %param = @args;
         @param{ map { lc $_ } keys %param } = values %param; # lowercase keys
         my $source = $param{'-source'} || $DefaultSource;
-        
+
         $source = "\L$source";	# normalize capitalization to lower case
-        
+
         # normalize capitalization
         return unless( $class->_load_tax_module($source) );
         return "Bio::DB::TFBS::$source"->new(@args);
@@ -155,7 +156,7 @@ sub _load_tax_module {
 $self: $source cannot be found
 Exception $@
 For more information about the Bio::DB::TFBS system please see
-the Bio::DB::TFBS docs.  This includes ways of checking for 
+the Bio::DB::TFBS docs.  This includes ways of checking for
 formats at compile time, not run time.
 END
   ;
